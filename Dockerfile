@@ -2,8 +2,16 @@ FROM jenkins:2.19.2
 
 # Install docker
 USER root
-ENV DOCKER_VERSION 1.12.3
-RUN curl -fsSLo d.tgz https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz && tar --strip-components=1 -xvzf d.tgz -C /usr/local/bin && rm d.tgz
+RUN curl -sSL https://get.docker.com/ | sh
+ADD ./wrapdocker /usr/local/bin/wrapdocker
+RUN chmod +x /usr/local/bin/wrapdocker
+
+# Install the magic wrapper.
+ADD ./wrapdocker /usr/local/bin/wrapdocker
+RUN chmod +x /usr/local/bin/wrapdocker
+
+# Define additional metadata for our image.
+VOLUME /var/lib/docker
 
 # Install rancher-compose
 ENV RANCHER_COMPOSE_VERSION v0.8.6
@@ -32,6 +40,6 @@ COPY jenkins-setup.sh /usr/local/bin/jenkins-setup.sh
 
 # Generate jenkins ssh key.
 COPY generate_key.sh /usr/local/bin/generate_key.sh
-
 COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+
+ENTRYPOINT ["wrapdocker", "/entrypoint.sh"]

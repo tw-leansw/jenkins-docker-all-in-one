@@ -3,7 +3,6 @@ set -e
 JENKINS_NAME=${JENKINS_NAME:-jenkins}
 JENKINS_VOLUME=${JENKINS_VOLUME:-jenkins-volume}
 JENKINS_IMAGE_NAME=${JENKINS_IMAGE_NAME:-jenkins-v2}
-JENKINS_OPTS=${JENKINS_OPTS:---prefix=/jenkins}
 TIMEZONE=${TIMEZONE:-Asia/Shanghai}
 
 # Create Jenkins volume.
@@ -22,4 +21,4 @@ docker run \
 --volumes-from ${JENKINS_VOLUME} \
 -e JAVA_OPTS="-Duser.timezone=${TIMEZONE} -Djenkins.install.runSetupWizard=false" \
 --restart=unless-stopped \
--d ${JENKINS_IMAGE_NAME} ${JENKINS_OPTS}
+-d ${JENKINS_IMAGE_NAME}
