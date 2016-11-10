@@ -3,8 +3,7 @@ FROM jenkins:2.19.2
 # Install docker
 USER root
 RUN curl -sSL https://get.docker.com/ | sh
-ADD ./wrapdocker /usr/local/bin/wrapdocker
-RUN chmod +x /usr/local/bin/wrapdocker
+ADD trusted-ca.list /etc/ssl/certs/ca-certificates.crt
 
 # Install the magic wrapper.
 ADD ./wrapdocker /usr/local/bin/wrapdocker
