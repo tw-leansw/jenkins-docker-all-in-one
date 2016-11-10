@@ -42,4 +42,6 @@ COPY jenkins-setup.sh /usr/local/bin/jenkins-setup.sh
 COPY generate_key.sh /usr/local/bin/generate_key.sh
 COPY entrypoint.sh /entrypoint.sh
 
+# Start docker and jenkins
+USER root
 ENTRYPOINT ["wrapdocker", "/entrypoint.sh"]
