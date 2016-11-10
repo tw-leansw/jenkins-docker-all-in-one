@@ -22,7 +22,7 @@ RUN /usr/local/bin/install-plugins.sh \
   git \
   maven-plugin \
   parameterized-trigger \
-  pipeline
+  workflow-aggregator
 
 # Add groovy setup config
 COPY init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
