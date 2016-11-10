@@ -7,7 +7,7 @@ RUN curl -fsSLo d.tgz https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER
 
 # Install rancher-compose
 ENV RANCHER_COMPOSE_VERSION v0.8.6
-RUN curl -fsSLo r.tgz https://releases.rancher.com/compose/${RANCHER_COMPOSE_VERSION}/rancher-compose-linux-amd64-${RANCHER_COMPOSE_VERSION}.tar.gz && tar --strip-components=1 -xvzf r.tgz -C /usr/local/bin && rm r.tgz
+RUN curl -fsSLo r.tgz https://releases.rancher.com/compose/${RANCHER_COMPOSE_VERSION}/rancher-compose-linux-amd64-${RANCHER_COMPOSE_VERSION}.tar.gz && tar --strip-components=2 -xvzf r.tgz -C /usr/local/bin && rm r.tgz
 
 # Install maven
 ENV MAVEN_VERSION 3.3.9
