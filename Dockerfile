@@ -17,11 +17,12 @@ RUN curl -fsSLo m.tgz http://apache.fayea.com/maven/maven-3/${MAVEN_VERSION}/bin
 # Install plugins
 USER jenkins
 RUN /usr/local/bin/install-plugins.sh \
-  docker-build-publish \
+  docker-commons \
+  docker-workflow \
   git \
   maven-plugin \
   parameterized-trigger \
-  swarm
+  pipeline
 
 # Add groovy setup config
 COPY init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
