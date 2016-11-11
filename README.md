@@ -17,3 +17,8 @@ Additional plugins include:
 -  maven-plugin
 -  parameterized-trigger
 -  workflow-aggregator
+
+Run it:
+```
+docker run -d -p 8080:8080 --name=jenkins-v2 flin/jenkins-v2-all-in-one:2.19.2
+```
