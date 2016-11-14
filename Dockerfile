@@ -3,7 +3,10 @@ FROM jenkins:2.19.2
 # Install docker
 USER root
 RUN curl -sSL https://get.docker.com/ | sh
-ADD trusted-ca.list /etc/ssl/certs/ca-certificates.crt
+
+# System-wide certificates file is /etc/ssl/certs/ca-certificates.crt
+# But better to use the docker-specific certificates folder
+ADD twleansw-dev-ca.crt /etc/docker/certs.d/reg.dev.twleansw.com/ca.crt
 
 # Install the magic wrapper.
 ADD ./wrapdocker /usr/local/bin/wrapdocker
